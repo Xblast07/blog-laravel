@@ -49,6 +49,7 @@ class PostController extends Controller
     
     public function create()
     {
+        // Récupération des catégories triées par nom
         $categories = Category::orderBy('name')->get();
         
         return view('posts.create', [
@@ -58,6 +59,7 @@ class PostController extends Controller
     
     public function store(Request $request)
     {
+        // Validation du formulaire
         $request->validate([
             'title' => 'required|unique:posts|min:5',
             'content' => 'required|min:5',
